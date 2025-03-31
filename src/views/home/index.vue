@@ -2,7 +2,15 @@
   <div class="home-container">
     <!-- 水波纹背景 -->
     <div class="ripple-background">
-      <div class="ripple" v-for="i in 3" :key="i" :style="{ left: `${Math.random() * 100}%`, top: `${Math.random() * 100}%`, animationDelay: `${i * 0.5}s` }"></div>
+      <div class="ripple" v-for="i in 6" :key="i" 
+           :style="{ 
+             left: `${Math.random() * 100}%`, 
+             top: `${Math.random() * 100}%`, 
+             width: `${50 + Math.random() * 100}px`, 
+             height: `${50 + Math.random() * 100}px`, 
+             animationDelay: `${i * 0.5}s`,
+             opacity: `${0.1 + Math.random() * 0.2}`
+           }"></div>
     </div>
     <!-- 顶部导航栏 -->
     <div class="nav-bar">
@@ -137,7 +145,8 @@ const sendMessage = () => {
 <style scoped>
 .home-container {
   min-height: 100vh;
-  background-color: #f5f7fa;
+  position: relative;
+  overflow: hidden;
 }
 
 .nav-bar {
@@ -145,28 +154,24 @@ const sendMessage = () => {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: white;
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.logo img {
-  width: 32px;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
 }
 
 .logo span {
   font-size: 1.2rem;
   font-weight: bold;
-  color: #409eff;
+  color: #fff;
 }
 
 .main-content {
-  max-width: 1200px;
+  max-width: 1440px;
   margin: 0 auto;
   padding: 2rem;
 }
@@ -174,21 +179,70 @@ const sendMessage = () => {
 .hero-section {
   text-align: center;
   padding: 4rem 0;
-}
-
-.hero-section h1 {
-  font-size: 2.5rem;
-  color: #303133;
-  margin-bottom: 1rem;
-}
-
-.hero-section p {
-  font-size: 1.2rem;
-  color: #606266;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .services-section {
   margin-top: 4rem;
+}
+
+.service-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin: 0 auto;
+  max-width: 1440px;
+}
+
+.service-card {
+  @extend .glass-card;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  color: white;
+  padding: 1.5rem;
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.service-card:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.service-card :deep(.el-card__body) {
+  width: 100%;
+  background: transparent;
+}
+
+.service-card h3 {
+  margin: 1rem 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  transition: all 0.3s ease;
+}
+
+.service-card p {
+  color: #333333;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  transition: all 0.3s ease;
+}
+
+.service-card .el-icon {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
 }
 
 .services-section h2 {
@@ -203,24 +257,37 @@ const sendMessage = () => {
   gap: 2rem;
 }
 
-.service-card {
-  text-align: center;
-  padding: 1.5rem;
+.ripple-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
 }
 
-.service-card :deep(.el-icon) {
-  color: #409eff;
-  margin-bottom: 1rem;
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #409eff, #a0cfff);
+  animation: ripple 8s infinite;
+  opacity: 0.1;
 }
 
-.service-card h3 {
-  margin: 1rem 0;
-  color: #303133;
-}
-
-.service-card p {
-  color: #606266;
-  margin-bottom: 1rem;
+@keyframes ripple {
+  0% {
+    transform: scale(1);
+    opacity: 0.1;
+  }
+  50% {
+    transform: scale(2);
+    opacity: 0.2;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.1;
+  }
 }
 
 .customer-service {

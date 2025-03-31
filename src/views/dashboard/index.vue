@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard-container">
     <el-row :gutter="20">
-      <el-col :span="6">
+      <el-col :xs="24" :sm="12" :md="6">
         <el-card class="data-card">
           <template #header>
             <div class="card-header">
@@ -52,7 +52,7 @@
     </el-row>
 
     <el-row :gutter="20" class="chart-row">
-      <el-col :span="16">
+      <el-col :xs="24" :md="16">
         <el-card class="chart-card">
           <template #header>
             <div class="card-header">
@@ -330,5 +330,25 @@ const pieOption = ref({
 .chart {
   height: 350px;
   padding: 20px;
+  width: 100%;
+  min-height: 300px;
+}
+
+@media screen and (max-width: 768px) {
+  .dashboard-container {
+    padding: 12px;
+  }
+  
+  .data-card {
+    margin-bottom: 12px;
+  }
+  
+  .chart-row {
+    margin-top: 12px;
+  }
+  
+  .chart {
+    height: 300px;
+  }
 }
 </style>
