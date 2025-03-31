@@ -6,7 +6,7 @@
     <el-card class="login-card">
       <div class="login-header">
         <img src="../../assets/vue.svg" alt="logo" class="logo" />
-        <h2>SaaS Admin</h2>
+        <h2>欢迎使用</h2>
       </div>
       <el-form :model="loginForm" :rules="rules" ref="loginFormRef" class="login-form">
         <el-form-item prop="username">

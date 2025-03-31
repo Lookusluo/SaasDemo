@@ -16,7 +16,7 @@
     <div class="nav-bar">
       <div class="logo">
         <img src="../../assets/vue.svg" alt="logo" />
-        <span>SaaS Admin</span>
+        <span>SaaS Service</span>
       </div>
       <div class="nav-links">
         <router-link to="/login" class="login-btn">
@@ -171,7 +171,7 @@ const sendMessage = () => {
 }
 
 .main-content {
-  max-width: 1440px;
+  max-width: 1920px;
   margin: 0 auto;
   padding: 2rem;
 }
@@ -189,10 +189,10 @@ const sendMessage = () => {
 
 .service-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
   margin: 0 auto;
-  max-width: 1440px;
+  max-width: 1920px;
 }
 
 .service-card {
